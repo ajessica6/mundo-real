@@ -1,11 +1,12 @@
 packages:
-  "framer-motion": "For fluid card animations, modal transitions, and ticker animations"
+  "framer-motion": "For page transitions, scroll animations, and interactive modal/card effects"
+  "lucide-react": "For crisp, beautiful icons across the UI"
   "clsx": "For conditional class merging"
-  "tailwind-merge": "For conditional class merging"
-
-images: []
+  "tailwind-merge": "For merging tailwind classes safely"
+  "react-hook-form": "For robust client-side form state management"
+  "@hookform/resolvers": "For form validation integration"
+  "zod": "For schema validation on the registration form"
 
 notes:
-  - Static frontend with Gen Z cyberpunk tech aesthetic.
-  - No API integration required; all data is hardcoded.
-  - Replaces previous Natura theme with dark neon glassmorphism.
+  - "No backend API required. All data is static and state is handled purely on the client side via React useState."
+  - "Event logos were previously moved to the public/images folder and will be accessed via BASE_URL."
