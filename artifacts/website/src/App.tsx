@@ -25,15 +25,14 @@ function Router() {
 
 function App() {
   return (
-    <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
-        <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, "")}>
-          <Router />
-        </WouterRouter>
-        <Toaster />
-      </TooltipProvider>
-    </QueryClientProvider>
-  );
+    <div>
+      <h1>Mundo Real – Saúde Planetária</h1>
+      <p>
+        Plataforma educativa sobre como o ambiente afeta saúde,
+        trabalho e vida.
+      </p>
+    </div>
+  )
 }
 
 export default App;
