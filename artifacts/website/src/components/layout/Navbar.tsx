@@ -15,10 +15,10 @@ export function Navbar() {
   }, []);
 
   const navLinks = [
-    { name: "Home", href: "#home" },
-    { name: "Features", href: "#features" },
-    { name: "Process", href: "#process" },
-    { name: "About", href: "#about" },
+    { name: "Início", href: "#home" },
+    { name: "Valores", href: "#features" },
+    { name: "Processo", href: "#process" },
+    { name: "Sobre", href: "#about" },
   ];
 
   return (
@@ -33,7 +33,7 @@ export function Navbar() {
       <div className="flex items-center gap-4 cursor-pointer" onClick={() => window.scrollTo(0, 0)}>
         <img 
           src={`${import.meta.env.BASE_URL}images/logo.png`} 
-          alt="Natura Logo" 
+          alt="Logo Natura" 
           className="w-12 h-12 md:w-14 md:h-14 rounded-full shadow-sm object-cover bg-white"
         />
         <span className="font-display font-bold text-xl md:text-2xl text-foreground tracking-tight">

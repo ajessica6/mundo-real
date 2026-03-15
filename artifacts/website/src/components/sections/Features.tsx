@@ -6,23 +6,23 @@ export function Features() {
   const cards = [
     {
       icon: <Sprout className="w-7 h-7" />,
-      title: "100% Organic",
-      description: "Grown without synthetic pesticides or harmful fertilizers, protecting the ecosystem."
+      title: "100% Orgânico",
+      description: "Cultivado sem agrotóxicos sintéticos ou fertilizantes prejudiciais, protegendo o ecossistema."
     },
     {
       icon: <Sun className="w-7 h-7" />,
-      title: "Fresh Harvest",
-      description: "Picked at peak ripeness and delivered directly to ensure maximum nutritional value."
+      title: "Colheita Fresca",
+      description: "Colhido no pico do amadurecimento e entregue diretamente para garantir o máximo valor nutricional."
     },
     {
       icon: <RefreshCw className="w-7 h-7" />,
-      title: "Eco Packaging",
-      description: "All our materials are completely biodegradable, recyclable, or safely compostable."
+      title: "Embalagem Ecológica",
+      description: "Todos os nossos materiais são completamente biodegradáveis, recicláveis ou compostáveis."
     },
     {
       icon: <Heart className="w-7 h-7" />,
-      title: "Fair Trade",
-      description: "We partner directly with small farmers, ensuring fair wages and safe working conditions."
+      title: "Comércio Justo",
+      description: "Trabalhamos diretamente com pequenos agricultores, garantindo salários justos e condições seguras."
     }
   ];
 
@@ -44,9 +44,9 @@ export function Features() {
   return (
     <section id="features" className="py-24 px-6 md:px-[10%] lg:px-[15%] bg-background">
       <div className="text-center mb-16 max-w-2xl mx-auto">
-        <h2 className="text-3xl md:text-4xl font-bold mb-4">Rooted in Nature</h2>
+        <h2 className="text-3xl md:text-4xl font-bold mb-4">Enraizados na Natureza</h2>
         <p className="text-muted-foreground text-lg">
-          We believe in creating products that don't just minimize harm, but actively contribute to the well-being of our environment.
+          Acreditamos em criar produtos que não apenas minimizam o impacto, mas contribuem ativamente para o bem-estar do nosso meio ambiente.
         </p>
       </div>
 

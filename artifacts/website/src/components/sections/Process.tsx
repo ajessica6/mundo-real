@@ -5,23 +5,23 @@ export function Process() {
   const steps = [
     {
       number: "01",
-      title: "Mindful Sourcing",
-      description: "We travel the globe to find the most fertile soils and partner with generational farmers who practice regenerative agriculture."
+      title: "Origem Consciente",
+      description: "Percorremos o mundo em busca dos solos mais férteis e estabelecemos parcerias com agricultores tradicionais que praticam a agricultura regenerativa."
     },
     {
       number: "02",
-      title: "Natural Cultivation",
-      description: "Our ingredients grow at their own pace, nourished only by sunlight, rainwater, and natural compost without artificial acceleration."
+      title: "Cultivo Natural",
+      description: "Nossos ingredientes crescem no seu próprio ritmo, nutridos apenas pela luz do sol, água da chuva e composto natural, sem aceleração artificial."
     },
     {
       number: "03",
-      title: "Careful Extraction",
-      description: "Using cold-press and gentle steam extraction methods, we preserve the delicate phytonutrients and vital properties of every plant."
+      title: "Extração Cuidadosa",
+      description: "Usando métodos de prensagem a frio e extração suave a vapor, preservamos os delicados fitonutrientes e as propriedades vitais de cada planta."
     },
     {
       number: "04",
-      title: "Sustainable Delivery",
-      description: "Packaged in minimal, post-consumer recycled materials and shipped using carbon-neutral logistics to arrive fresh at your door."
+      title: "Entrega Sustentável",
+      description: "Embalado em materiais reciclados pós-consumo e enviado com logística de carbono neutro para chegar fresco à sua porta."
     }
   ];
 
@@ -38,8 +38,8 @@ export function Process() {
           transition={{ duration: 0.5 }}
           className="mb-16 md:mb-24"
         >
-          <span className="text-primary font-bold tracking-wider uppercase text-sm mb-2 block">How It Works</span>
-          <h2 className="text-3xl md:text-5xl font-bold">From Seed to Soul.</h2>
+          <span className="text-primary font-bold tracking-wider uppercase text-sm mb-2 block">Como Funciona</span>
+          <h2 className="text-3xl md:text-5xl font-bold">Da Semente à Alma.</h2>
         </motion.div>
 
         <div className="relative">
