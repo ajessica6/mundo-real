@@ -1,13 +1,13 @@
 import React, { createContext, useContext, useState, ReactNode } from "react";
-import { Category } from "@/data/content";
+import { Category, Article } from "@/data/content";
 
 interface FilterContextType {
   searchQuery: string;
   setSearchQuery: (query: string) => void;
   activeCategory: Category | "Todos";
   setActiveCategory: (category: Category | "Todos") => void;
-  selectedArticleId: string | null;
-  setSelectedArticleId: (id: string | null) => void;
+  selectedArticle: Article | null;
+  setSelectedArticle: (article: Article | null) => void;
 }
 
 const FilterContext = createContext<FilterContextType | undefined>(undefined);
@@ -15,7 +15,7 @@ const FilterContext = createContext<FilterContextType | undefined>(undefined);
 export function FilterProvider({ children }: { children: ReactNode }) {
   const [searchQuery, setSearchQuery] = useState("");
   const [activeCategory, setActiveCategory] = useState<Category | "Todos">("Todos");
-  const [selectedArticleId, setSelectedArticleId] = useState<string | null>(null);
+  const [selectedArticle, setSelectedArticle] = useState<Article | null>(null);
 
   return (
     <FilterContext.Provider 
@@ -24,8 +24,8 @@ export function FilterProvider({ children }: { children: ReactNode }) {
         setSearchQuery, 
         activeCategory, 
         setActiveCategory,
-        selectedArticleId,
-        setSelectedArticleId
+        selectedArticle,
+        setSelectedArticle
       }}
     >
       {children}

@@ -18,14 +18,15 @@ export interface Article {
   content: string;
 }
 
-export const CATEGORY_COLORS: Record<Category, string> = {
-  "Fase 1: Entender": "bg-blue-100 text-blue-700 border-blue-200",
-  "Fase 2: Definir": "bg-emerald-100 text-emerald-700 border-emerald-200",
-  "Fase 3: Divergir": "bg-orange-100 text-orange-700 border-orange-200",
-  "Fase 4: Prototipar": "bg-purple-100 text-purple-700 border-purple-200",
-  "Fase 5: Testar": "bg-rose-100 text-rose-700 border-rose-200",
-  "Ferramentas": "bg-teal-100 text-teal-700 border-teal-200",
-  "Casos de Uso": "bg-amber-100 text-amber-800 border-amber-200",
+// Cyberpunk Neon colors mapping
+export const CATEGORY_STYLES: Record<Category, { color: string, border: string, bg: string, shadow: string }> = {
+  "Fase 1: Entender": { color: "#00F5FF", border: "border-[#00F5FF]", bg: "bg-[#00F5FF]", shadow: "shadow-[#00F5FF]" }, // Cyan
+  "Fase 2: Definir": { color: "#39FF14", border: "border-[#39FF14]", bg: "bg-[#39FF14]", shadow: "shadow-[#39FF14]" }, // Lime
+  "Fase 3: Divergir": { color: "#FF6B00", border: "border-[#FF6B00]", bg: "bg-[#FF6B00]", shadow: "shadow-[#FF6B00]" }, // Orange
+  "Fase 4: Prototipar": { color: "#BF5FFF", border: "border-[#BF5FFF]", bg: "bg-[#BF5FFF]", shadow: "shadow-[#BF5FFF]" }, // Purple
+  "Fase 5: Testar": { color: "#FF2D78", border: "border-[#FF2D78]", bg: "bg-[#FF2D78]", shadow: "shadow-[#FF2D78]" }, // Pink
+  "Ferramentas": { color: "#00C9FF", border: "border-[#00C9FF]", bg: "bg-[#00C9FF]", shadow: "shadow-[#00C9FF]" }, // Light Blue
+  "Casos de Uso": { color: "#FFD700", border: "border-[#FFD700]", bg: "bg-[#FFD700]", shadow: "shadow-[#FFD700]" }, // Gold
 };
 
 export const ALL_CATEGORIES: Category[] = [

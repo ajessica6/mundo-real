@@ -1,64 +1,43 @@
-import React, { useRef, useEffect, useState } from "react";
-import { ALL_CATEGORIES, Category } from "@/data/content";
+import React from "react";
 import { useFilter } from "@/context/FilterContext";
-import { clsx, type ClassValue } from "clsx";
-import { twMerge } from "tailwind-merge";
-
-function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs));
-}
+import { ALL_CATEGORIES, Category, CATEGORY_STYLES } from "@/data/content";
 
 export function FilterBar() {
   const { activeCategory, setActiveCategory } = useFilter();
-  const [isSticky, setIsSticky] = useState(false);
-  const barRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (barRef.current) {
-        setIsSticky(window.scrollY > barRef.current.offsetTop - 80);
-      }
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  const tabs: (Category | "Todos")[] = ["Todos", ...ALL_CATEGORIES];
 
   return (
-    <div 
-      ref={barRef}
-      className={cn(
-        "sticky top-[72px] z-40 transition-all duration-200",
-        isSticky ? "bg-background/95 backdrop-blur-md shadow-sm border-b border-border/50 py-3" : "py-4"
-      )}
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center gap-2 overflow-x-auto no-scrollbar pb-2 sm:pb-0">
-          {tabs.map((tab) => {
-            const isActive = activeCategory === tab;
-            return (
-              <button
-                key={tab}
-                onClick={() => {
-                  setActiveCategory(tab);
-                  // Scroll slightly down to ensure grid is visible
-                  if (window.scrollY > 400) {
-                    window.scrollTo({ top: 400, behavior: 'smooth' });
-                  }
-                }}
-                className={cn(
-                  "whitespace-nowrap px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-300",
-                  isActive 
-                    ? "bg-foreground text-background shadow-md transform -translate-y-0.5" 
-                    : "bg-white text-muted-foreground border border-border hover:border-primary/30 hover:text-foreground hover:bg-primary/5"
-                )}
-              >
-                {tab}
-              </button>
-            );
-          })}
-        </div>
+    <div className="sticky top-[73px] z-40 w-full glass-panel border-x-0 border-y border-white/10 py-4 px-6 md:px-10 overflow-x-auto no-scrollbar">
+      <div className="flex items-center gap-3 min-w-max max-w-7xl mx-auto">
+        <button
+          onClick={() => setActiveCategory("Todos")}
+          className={`px-5 py-2 rounded-full font-mono text-xs font-bold uppercase tracking-wider transition-all duration-300 ${
+            activeCategory === "Todos"
+              ? "bg-white text-black shadow-[0_0_15px_rgba(255,255,255,0.5)]"
+              : "bg-white/5 text-muted-foreground border border-white/10 hover:border-white/30 hover:text-white"
+          }`}
+        >
+          Todos
+        </button>
+        
+        {ALL_CATEGORIES.map((cat) => {
+          const isActive = activeCategory === cat;
+          const style = CATEGORY_STYLES[cat];
+          
+          return (
+            <button
+              key={cat}
+              onClick={() => setActiveCategory(cat)}
+              className={`px-5 py-2 rounded-full font-mono text-xs font-bold uppercase tracking-wider transition-all duration-300 border ${
+                isActive
+                  ? `${style.bg} text-background ${style.border} ${style.shadow}`
+                  : `bg-white/5 text-muted-foreground border-white/10 hover:border-white/30 hover:text-white`
+              }`}
+              style={isActive ? { boxShadow: `0 0 15px ${style.color}80` } : {}}
+            >
+              {cat}
+            </button>
+          );
+        })}
       </div>
     </div>
   );

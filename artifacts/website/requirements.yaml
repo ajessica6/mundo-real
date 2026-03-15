@@ -1,12 +1,11 @@
 packages:
-  "framer-motion": "For fluid card animations and modal transitions"
-  "clsx": "For conditional class joining"
-  "tailwind-merge": "For merging tailwind classes safely"
+  "framer-motion": "For fluid card animations, modal transitions, and ticker animations"
+  "clsx": "For conditional class merging"
+  "tailwind-merge": "For conditional class merging"
 
-images:
-  - path: "artifacts/website/public/images/hero-bg.png"
-    description: "Subtle abstract gradient mesh background in deep indigo and purple tones, clean and modern for a tech learning platform"
-    aspect_ratio: "16:9"
+images: []
 
 notes:
-  - "The application uses pure frontend state (React Context) for filtering and search, as requested (no API)."
+  - Static frontend with Gen Z cyberpunk tech aesthetic.
+  - No API integration required; all data is hardcoded.
+  - Replaces previous Natura theme with dark neon glassmorphism.

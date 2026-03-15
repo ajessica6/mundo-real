@@ -1,22 +1,24 @@
 import { Link } from "wouter";
-import { AlertCircle } from "lucide-react";
+import { Zap } from "lucide-react";
 
 export default function NotFound() {
   return (
-    <div className="min-h-screen w-full flex items-center justify-center bg-background">
-      <div className="max-w-md w-full px-6 py-12 bg-white rounded-3xl shadow-xl text-center border border-border">
-        <div className="w-20 h-20 bg-rose-100 rounded-full flex items-center justify-center text-rose-600 mx-auto mb-6">
-          <AlertCircle size={40} />
-        </div>
-        <h1 className="text-4xl font-extrabold text-foreground mb-4">404</h1>
-        <p className="text-lg text-muted-foreground mb-8">
-          A página que você está procurando não existe ou foi movida.
+    <div className="min-h-screen flex flex-col items-center justify-center bg-background text-center px-6">
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[50vw] h-[50vw] bg-primary/10 rounded-full blur-[120px] pointer-events-none" />
+      
+      <div className="relative z-10 flex flex-col items-center">
+        <Zap className="w-20 h-20 text-accent mb-8" />
+        <h1 className="text-8xl md:text-9xl font-black font-mono text-white mb-4 tracking-tighter">404</h1>
+        <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-6">Página não encontrada</h2>
+        <p className="text-muted-foreground max-w-md mb-10 font-mono">
+          O link que você acessou pode estar quebrado ou a página foi removida da plataforma.
         </p>
+        
         <Link 
           href="/" 
-          className="inline-flex px-8 py-3 bg-primary hover:bg-primary/90 text-white font-semibold rounded-xl shadow-lg shadow-primary/25 transition-all transform hover:-translate-y-1"
+          className="px-8 py-4 bg-secondary text-background font-mono font-bold uppercase tracking-wider hover:bg-secondary/90 transition-all shadow-[0_0_20px_rgba(0,245,255,0.4)] rounded-sm"
         >
-          Voltar para o Início
+          Voltar ao Início
         </Link>
       </div>
     </div>

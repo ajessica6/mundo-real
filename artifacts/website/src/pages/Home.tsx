@@ -1,73 +1,69 @@
 import React, { useMemo } from "react";
-import { Navbar } from "@/components/Navbar";
-import { Footer } from "@/components/Footer";
-import { Hero } from "@/components/Hero";
+import { Navbar } from "@/components/layout/Navbar";
+import { Hero } from "@/components/sections/Hero";
+import { Marquee } from "@/components/sections/Marquee";
 import { FilterBar } from "@/components/FilterBar";
+import { FeaturedCard } from "@/components/FeaturedCard";
 import { ArticleCard } from "@/components/ArticleCard";
 import { ArticleModal } from "@/components/ArticleModal";
+import { Footer } from "@/components/layout/Footer";
 import { useFilter } from "@/context/FilterContext";
-import { ARTICLES, FEATURED_ARTICLE } from "@/data/content";
+import { ARTICLES } from "@/data/content";
 import { SearchX } from "lucide-react";
+import { motion } from "framer-motion";
 
 export default function Home() {
-  const { searchQuery, activeCategory, selectedArticleId } = useFilter();
+  const { searchQuery, activeCategory } = useFilter();
 
   const filteredArticles = useMemo(() => {
     return ARTICLES.filter((article) => {
       const matchesCategory = activeCategory === "Todos" || article.category === activeCategory;
-      const matchesSearch = searchQuery === "" || 
-        article.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
-        article.excerpt.toLowerCase().includes(searchQuery.toLowerCase());
+      const query = searchQuery.toLowerCase();
+      const matchesSearch = query === "" || 
+        article.title.toLowerCase().includes(query) || 
+        article.excerpt.toLowerCase().includes(query);
       
       return matchesCategory && matchesSearch;
     });
-  }, [activeCategory, searchQuery]);
-
-  const selectedArticle = useMemo(() => {
-    if (selectedArticleId === FEATURED_ARTICLE.id) return FEATURED_ARTICLE;
-    return ARTICLES.find(a => a.id === selectedArticleId);
-  }, [selectedArticleId]);
-
-  // Determine if we should show the featured article.
-  // Hide it if the user is searching or filtering, so it doesn't clutter the exact results.
-  const showFeatured = activeCategory === "Todos" && searchQuery === "";
+  }, [searchQuery, activeCategory]);
 
   return (
-    <div className="min-h-screen flex flex-col bg-background">
+    <div className="min-h-screen flex flex-col">
       <Navbar />
+      <Hero />
+      <Marquee />
       
-      <main className="flex-1">
-        <Hero />
+      <main id="content-grid" className="flex-1 relative pt-10">
         <FilterBar />
         
-        <section className="py-16 md:py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-          {showFeatured && (
-            <ArticleCard article={FEATURED_ARTICLE} featured={true} />
+        <div className="max-w-7xl mx-auto px-6 py-16">
+          {/* Only show featured if no active search or filter */}
+          {activeCategory === "Todos" && !searchQuery && (
+            <FeaturedCard />
           )}
 
           {filteredArticles.length > 0 ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-              {filteredArticles.map((article) => (
-                <ArticleCard key={article.id} article={article} />
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+              {filteredArticles.map((article, idx) => (
+                <ArticleCard key={article.id} article={article} index={idx} />
               ))}
             </div>
           ) : (
-            <div className="flex flex-col items-center justify-center py-20 text-center bg-white rounded-3xl border border-border border-dashed">
-              <div className="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center text-primary mb-6">
-                <SearchX size={32} />
-              </div>
-              <h3 className="text-2xl font-bold text-foreground mb-2">Nenhum resultado encontrado</h3>
-              <p className="text-muted-foreground max-w-md">
-                Não conseguimos encontrar nenhum artigo correspondente a "{searchQuery}" na categoria {activeCategory}. Tente usar termos diferentes.
-              </p>
-            </div>
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="py-32 flex flex-col items-center justify-center text-center border border-dashed border-white/10 rounded-2xl bg-white/[0.01]"
+            >
+              <SearchX className="w-16 h-16 text-muted-foreground mb-6 opacity-50" />
+              <h3 className="text-2xl font-bold text-white mb-2">Nenhum resultado encontrado</h3>
+              <p className="text-muted-foreground font-mono">Tente buscar com outros termos ou limpe os filtros.</p>
+            </motion.div>
           )}
-        </section>
+        </div>
       </main>
 
       <Footer />
-      
-      <ArticleModal article={selectedArticle} />
+      <ArticleModal />
     </div>
   );
 }

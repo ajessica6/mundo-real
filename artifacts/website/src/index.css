@@ -1,9 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 @import "tailwindcss";
 
 @theme inline {
-  --font-sans: 'Inter', sans-serif;
-  --font-display: 'Outfit', sans-serif;
+  --font-sans: 'Space Grotesk', sans-serif;
+  --font-mono: 'Space Mono', monospace;
 
   --color-background: hsl(var(--background));
   --color-foreground: hsl(var(--foreground));
@@ -21,51 +21,61 @@
   --color-card-foreground: hsl(var(--card-foreground));
   
   --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
   --color-ring: hsl(var(--ring));
   
-  --color-footer: hsl(var(--footer));
-  --color-footer-foreground: hsl(var(--footer-foreground));
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+
+  /* Custom Phase Colors */
+  --color-phase-1: #00F5FF;
+  --color-phase-2: #39FF14;
+  --color-phase-3: #FF6B00;
+  --color-phase-4: #BF5FFF;
+  --color-phase-5: #FF2D78;
+  --color-phase-tools: #00C9FF;
+  --color-phase-cases: #FFD700;
 }
 
 :root {
-  /* #F8F7FF */
-  --background: 248 100% 98%;
-  /* #1E1B4B */
-  --foreground: 244 47% 20%;
+  /* Dark Tech Theme */
+  --background: 240 20% 4%; /* #08080C */
+  --foreground: 240 50% 97%;
   
-  /* #4F46E5 - Indigo */
-  --primary: 243 75% 59%;
+  --primary: 281 100% 50%; /* Neon purple: #BF5FFF */
   --primary-foreground: 0 0% 100%;
   
-  /* #7C3AED - Purple */
-  --secondary: 262 83% 58%;
-  --secondary-foreground: 0 0% 100%;
+  --secondary: 184 100% 50%; /* Electric cyan: #00F5FF */
+  --secondary-foreground: 240 20% 5%;
   
-  --muted: 240 10% 90%;
-  --muted-foreground: 244 20% 45%;
+  --accent: 337 100% 59%; /* Hot pink: #FF2D78 */
+  --accent-foreground: 0 0% 100%;
   
-  --card: 0 0% 100%;
-  --card-foreground: 244 47% 20%;
+  --muted: 240 27% 11%;
+  --muted-foreground: 240 15% 63%;
   
-  --border: 240 15% 90%;
-  --ring: 243 75% 59%;
+  --card: 240 25% 8%; /* Very dark card */
+  --card-foreground: 240 50% 97%;
   
-  /* #1A1A2E - Dark Navy */
-  --footer: 240 28% 14%;
-  --footer-foreground: 0 0% 100%;
+  --border: 240 24% 20%;
+  --input: 240 27% 11%;
+  --ring: 184 100% 50%;
 }
 
 @layer base {
   html {
     scroll-behavior: smooth;
+    background-color: hsl(var(--background));
   }
   
   body {
-    @apply bg-background text-foreground font-sans antialiased selection:bg-primary/20 selection:text-primary;
+    @apply bg-background text-foreground font-sans antialiased selection:bg-secondary/30 selection:text-secondary;
+    /* Subtle dot grid pattern */
+    background-image: radial-gradient(hsl(var(--border) / 0.5) 1px, transparent 0);
+    background-size: 32px 32px;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-display);
     @apply font-bold tracking-tight text-foreground;
   }
 }
@@ -76,6 +86,45 @@
   }
   
   .glass-panel {
-    @apply bg-white/80 backdrop-blur-lg border border-white/20 shadow-xl shadow-indigo-900/5;
+    @apply bg-white/[0.02] backdrop-blur-xl border border-white/10 shadow-2xl;
   }
+
+  .neon-text-cyan {
+    text-shadow: 0 0 10px rgba(0, 245, 255, 0.5), 0 0 20px rgba(0, 245, 255, 0.3);
+  }
+
+  .neon-text-purple {
+    text-shadow: 0 0 10px rgba(191, 95, 255, 0.5), 0 0 20px rgba(191, 95, 255, 0.3);
+  }
+
+  .neon-border-cyan {
+    box-shadow: 0 0 10px rgba(0, 245, 255, 0.2), inset 0 0 10px rgba(0, 245, 255, 0.1);
+  }
+
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-secondary via-primary to-accent;
+  }
+}
+
+/* Animations */
+@keyframes float {
+  0%, 100% { transform: translateY(0) scale(1); opacity: 0.5; }
+  50% { transform: translateY(-20px) scale(1.05); opacity: 0.8; }
+}
+
+.animate-float {
+  animation: float 8s ease-in-out infinite;
+}
+
+.animate-float-delayed {
+  animation: float 10s ease-in-out infinite 2s;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  animation: marquee 30s linear infinite;
 }
